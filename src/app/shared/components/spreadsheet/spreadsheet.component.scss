@@ -1,0 +1,248 @@
+// @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+
+* {
+    // font-family: "Lato", sans-serif;
+}
+
+p {
+    color: #444;
+}
+
+.spreadsheet {
+    position: relative;
+    font-size: 12px;
+    display: grid;
+    grid-template-columns: repeat(15, minmax(0, 1fr));
+    grid-auto-rows: 30px;
+    border: 1px solid #c0c0c0;
+    border-bottom: 0;
+    border-right: 0;
+    margin: 60px 16px 0 16px;
+    user-select: none;
+
+    * {
+        text-overflow: ellipsis;
+    }
+
+    span {
+        border: 1px solid #c0c0c0;
+        border-top: 0;
+        border-left: 0;
+        background: #e6e6e6;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        padding: 2px;
+        overflow: hidden;
+        // cursor: url("src\assets\images\drag-icon.png") 6 6, auto;
+        text-align: center;
+        padding-top: 8px;
+    }
+
+    .cell {
+        border-right: 1px solid #e2e3e3;
+        border-bottom: 1px solid #e2e3e3;
+
+        // border-top: 0;
+        position: relative;
+        // border-left: 0;
+    }
+
+    input {
+        border: 0;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        box-sizing: border-box;
+        padding: 2px;
+
+        &:focus {
+            border: none;
+            outline: none;
+        }
+
+        &[readonly] {
+            cursor: text;
+            cursor: cell;
+        }
+    }
+
+    .cell-select {
+        position: absolute;
+        height: 30px;
+    }
+
+    #cell-drag {
+        position: absolute;
+        background: #217346;
+        grid-row-end: span 1;
+        grid-column-end: span 1;
+        display: inline-block;
+        height: 8px;
+        width: 8px;
+        bottom: 0;
+        right: 0;
+        border: 2px solid #fff;
+        transform: translate(5px, 5px);
+        // cursor: url("src\assets\images\drag-icon.png") 6 6, auto;
+        z-index: 2;
+    }
+}
+
+ul {
+    list-style: none;
+    width: 200px;
+}
+
+#drag-tracker {
+    display: inline-block;
+    background: rgba(255, 127, 80, 0.089);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.addRow {
+    margin: 16px 16px 0 16px;
+
+    input {
+        margin-left: 16px;
+        width: 100px;
+        padding: 7px;
+    }
+
+    p {
+        display: inline-block;
+        padding-left: 16px;
+    }
+}
+
+.contextMenu {
+    display: inline-block;
+    position: fixed;
+    z-index: 2;
+    background: #fff;
+    padding: 0;
+    border: 1px solid #e0e0e0;
+}
+
+.context-menu-mask {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0);
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.selected-cell:not(.selecting):after {
+    content: "";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    border: 1px solid #abacac;
+    box-sizing: border-box;
+    z-index: 3;
+    color: #767878;
+    text-align: center;
+    line-height: 16px;
+    right: -20px;
+    bottom: 5px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.table-out-mask {
+    position: fixed;
+    display: inline-block;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.select-bounds {
+    border: 2px solid rgb(33, 115, 70);
+    z-index: 2;
+    pointer-events: none;
+    position: relative;
+
+}
+
+.select-mask {
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.drag-bounds {
+    border: 2px solid rgb(33, 115, 70, 0.4);
+    z-index: 1;
+    pointer-events: none;
+    position: relative;
+}
+
+.select-handle {
+    position: absolute;
+    background: #217346;
+    grid-row-end: span 1;
+    grid-column-end: span 1;
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    bottom: 0;
+    right: 0;
+    border: 2px solid #fff;
+    transform: translate(5px, 5px);
+    z-index: 2;
+    pointer-events: all;
+
+}
+
+.click-through {
+    pointer-events: none;
+}
+
+.copy-bounds {
+    z-index: 3;
+    pointer-events: none;
+}
+
+.cell-input:not(.editable) {
+    pointer-events: none;
+}
+
+.marching-ants {
+    background-size: 9px 2px, 9px 2px, 2px 8px, 2px 9px;
+    background-position: 0 0, 0 100%, 0 0, 100% 0;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    animation: marching-ants 4s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-play-state: running;
+    background-image: linear-gradient(to right, #fff 50%, #207446 50%),
+        linear-gradient(to right, #fff 50%, #207446 50%),
+        linear-gradient(to bottom, #fff 50%, #207446 50%),
+        linear-gradient(to bottom, #fff 50%, #207446 50%);
+    /*   color: #fff; */
+}
+
+@keyframes marching-ants {
+    0% {
+        background-position: 0 0, 0 100%, 0 0, 100% 0;
+    }
+
+    100% {
+        background-position: 36px 0, -36px 100%, 0 -36px, 100% 36px;
+    }
+}

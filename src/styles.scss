@@ -1482,6 +1482,13 @@ a {
 
 
 /*#region Colors */
+
+.h-primary,
+.h-hover-primary:hover {
+    color: #000 !important;
+    background-color: #48bbed !important
+}
+
 .h-amber,
 .h-hover-amber:hover {
     color: #000 !important;
@@ -1670,6 +1677,11 @@ a {
     background-color: #ddffff !important
 }
 
+.h-text-primary,
+.h-hover-text-primary:hover {
+    color: #48bbed !important
+}
+
 .h-text-amber,
 .h-hover-text-amber:hover {
     color: #ffc107 !important
@@ -1806,6 +1818,11 @@ a {
 .h-text-dark-gray,
 .h-hover-text-dark-gray:hover {
     color: #3a3a3a !important
+}
+
+.h-border-primary,
+.h-hover-border-primary:hover {
+    border-color: #48bbed !important
 }
 
 .h-border-amber,
@@ -2067,7 +2084,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 
 .h-sidebar {
@@ -2076,4 +2093,12 @@ h6 {
     top: 43px;
     bottom: 0;
     height: inherit;
+}
+
+
+
+
+//new
+.h-indent {
+    padding-left: 12px;
 }

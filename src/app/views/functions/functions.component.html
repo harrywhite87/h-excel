@@ -1,0 +1,61 @@
+<div *ngIf="!id" class="h-row h-padding-64">
+    <div class="h-twothird h-container">
+        <h1 class="h-text-primary">Functions</h1>
+        <p>
+            The functions section lists the most useful functions in excel providing an overview and a handy interactive
+            demo.
+        <p>
+            (Quick note on the spreadsheet demos, I've build the interactive spredsheet below to mirror excel
+            functionality however there's lots of stuff it doesnt do so don't be surised if the functionality is
+            somewhat different. However for the purposes of each of these functions, it should work for you.)
+        </p>
+
+        <p>
+            If you'd like to encorporate you're own data, just copy and paste it in.
+        </p>
+
+        <app-spreadsheet></app-spreadsheet>
+    </div>
+    <div class="h-third h-container">
+        <p class="h-border h-padding-large h-padding-32 h-center">AD</p>
+        <p class="h-border h-padding-large h-padding-64 h-center">AD</p>
+    </div>
+</div>
+<!-- { name: "RANK function", type: "Compatibility", summary: "Returns the rank of a number in a list of numbers",
+description: "Returns the rank of a number in a list of numbers. The rank of a number is its size relative to other
+values in a list. (If you were to sort the list, the rank of the number would be its position.)", link:
+"https://support.microsoft.com/en-us/office/rank-function-6a2fc49d-1831-4a03-9d8c-c279cf99f723" }, -->
+
+<ng-container *ngIf="id">
+    <div class="h-row h-padding-64">
+        <div class="h-twothird h-container">
+            <h1 class="h-text-primary">{{functions[id].name}}</h1>
+            <div class="h-indent">
+                <h3>Category</h3>
+                <p class="h-indent">{{functions[id].type}}</p>
+            </div>
+            <div class="h-indent">
+                <h3>Summary</h3>
+                <p class="h-indent">{{functions[id].summary}}</p>
+            </div>
+            <div class="h-indent">
+                <h3>Description</h3>
+                <p class="h-indent">{{functions[id].description}}</p>
+            </div>
+        </div>
+        <div class="h-third h-container">
+            <p class="h-border h-padding-large h-padding-32 h-center">AD</p>
+            <p class="h-border h-padding-large h-padding-64 h-center">AD</p>
+        </div>
+    </div>
+    <div class="h-row">
+        <div class="h-twothird h-container">
+            <h1 class="h-text-primary">Example</h1>
+            <app-spreadsheet></app-spreadsheet>
+        </div>
+        <div class="h-third h-container">
+            <p class="h-border h-padding-large h-padding-32 h-center">AD</p>
+            <p class="h-border h-padding-large h-padding-64 h-center">AD</p>
+        </div>
+    </div>
+</ng-container>

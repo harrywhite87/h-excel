@@ -3,9 +3,57 @@
         class="h-right h-xlarge h-padding-large h-hover-black h-hide-large" title="Close Menu">
         <i class="fa fa-remove"></i>
     </a>
-    <h4 class="h-bar-item"><b>Menu</b></h4>
-    <a class="h-bar-item h-button h-hover-black" href="#">Link</a>
-    <a class="h-bar-item h-button h-hover-black" href="#">Link</a>
-    <a class="h-bar-item h-button h-hover-black" href="#">Link</a>
-    <a class="h-bar-item h-button h-hover-black" href="#">Link</a>
+    <ng-container *ngFor="let category of sidenav">
+        <h5 class="h-bar-item"><b>{{category.category}}</b></h5>
+        <a [routerLink]="['/functions',function.id]" routerLinkActive="active"
+            *ngFor="let function of category.function" class="h-bar-item h-button h-hover-black h-medium"
+            href="#">{{function.name}}</a>
+    </ng-container>
+    <!-- <h5 class="h-bar-item"><b>Logical</b></h5>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">AND function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">IF function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">IFERROR function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">IFNA function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">IFS function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">NOT function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">OR function</a>
+    <h5 class="h-bar-item"><b>Lookup and reference</b></h5>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ADDRESS function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COLUMN function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COLUMNS function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">INDEX function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">INDIRECT function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">MATCH function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ROW function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ROWS function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">TRANSPOSE function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">VLOOKUP function</a>
+    <h5 class="h-bar-item"><b>Math and trigonometry</b></h5>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">INT function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">RAND function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ROMAN function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ROUND function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ROUNDDOWN function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">ROUNDUP function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">SUM function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">SUMIF function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">SUMIFS function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">SUMPRODUCT function</a>
+    <h5 class="h-bar-item"><b>Statistical</b></h5>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COUNT function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COUNTA function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COUNTBLANK function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COUNTIF function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">COUNTIFS function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">MAX function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">MIN function</a>
+    <h5 class="h-bar-item"><b>Text</b></h5>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">CODE function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">CONCAT function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">CONCATENATE function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">LOWER function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">MID, MIDB functions</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">RIGHT, RIGHTB functions</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">TRIM function</a>
+    <a class="h-bar-item h-button h-hover-black h-medium" href="#">UPPER function</a> -->
 </nav>

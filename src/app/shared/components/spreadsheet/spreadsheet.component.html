@@ -1,0 +1,41 @@
+<div class="spreadsheet" *ngIf="sheet" (mouseleave)="sheetOut()"
+    [ngStyle]="{'grid-template-columns': 'repeat('+sheet.headers.length+', minmax(0, 1fr))'}">
+    <span [ngStyle]="{'grid-area': '1 / 1 / span 1 / span 1'}"></span>
+    <ng-container *ngFor="let header of sheet.headers;let c = index">
+        <span class="" [ngStyle]="{'grid-area': '1 / '+(c+2)+' / span 1 / span 1'}"
+            (mouseup)="cellUp(c,1)">{{header}}</span>
+    </ng-container>
+    <ng-container *ngFor="let row of sheet.data; let r = index">
+        <span [ngStyle]="{'grid-area': (r+2)+' / 1 / span 1 / span 1'}" (mouseup)="cellUp(0,1)">{{r+1}}</span>
+        <div class="cell" [ngStyle]="{'grid-area': (r+2)+' / '+(c+2)+' / span 1 / span 1'}"
+            *ngFor="let column of row; let c = index" (mousedown)="cellDown(c,r,cell)" (mouseover)="cellOver(c,r)"
+            (mouseup)="cellUp(c,1)">
+            <input class="cell-input" #cell [(ngModel)]="column.value" (keyup)="inputKey($event,column)">
+        </div>
+    </ng-container>
+    <div class="select-bounds"
+        [ngStyle]="{'grid-area': (selectBounds.r+2)+' / '+(selectBounds.c+2)+' / span '+selectBounds.rSpan+' / span '+selectBounds.cSpan}">
+    </div>
+
+    <div *ngIf="selectBounds.rSpan>1" class="select-mask"
+        [ngStyle]="{'grid-area': (selectBounds.r+3)+' / '+(selectBounds.c+2)+' / span '+(selectBounds.rSpan-1)+' / span '+selectBounds.cSpan}">
+    </div>
+    <div *ngIf="selectBounds.cSpan>1" class="select-mask"
+        [ngStyle]="{'grid-area': (selectBounds.r+2)+' / '+(selectBounds.c+3)+' / span 1 / span '+(selectBounds.cSpan-1)}">
+    </div>
+
+    <div class="drag-bounds"
+        [ngStyle]="{'grid-area': (dragBounds.r+2)+' / '+(dragBounds.c+2)+' / span '+dragBounds.rSpan+' / span '+dragBounds.cSpan}">
+        <div [ngClass]="{'click-through': copying}" class="select-handle" (mousedown)="handleDown(0,1)"></div>
+    </div>
+
+    <div *ngIf="copyingSelection" class="copy-bounds marching-ants"
+        [ngStyle]="{'grid-area': (copyBounds.r+2)+' / '+(copyBounds.c+2)+' / span '+copyBounds.rSpan+' / span '+copyBounds.cSpan}">
+    </div>
+</div>
+
+<div class="addRow">
+    <button (click)="add()" mat-stroked-button>Add</button>
+    <input matInput type="text" value="addRows" [(ngModel)]="addRows">
+    <p>rows</p>
+</div>
